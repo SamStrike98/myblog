@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 export const POST = async (request) => {
     // if (request.auth?.user.role === 'admin') {
     try {
-        const { title, content } = await request.json();
+        const { title, content, draft } = await request.json();
 
         // Create a DB Connection
         await dbConnect();
@@ -17,7 +17,7 @@ export const POST = async (request) => {
 
         // Form a DB Payload
         const newPost = {
-            title, content, createdAt
+            title, content, createdAt, draft
         };
 
         // Update the DB
@@ -42,14 +42,14 @@ export const GET = async (request) => {
         await dbConnect();
         console.log("Database connected");
 
-        const items = await getAllItems();
+        const posts = await getAllPosts();
         // console.log("Fetched products:", products);
 
-        return new NextResponse(JSON.stringify(items), {
+        return new NextResponse(JSON.stringify(posts), {
             status: 200
         });
     } catch (error) {
-        console.error("Error fetching items:", error);
+        console.error("Error fetching posts:", error);
         return new NextResponse(error.message, {
             status: 500
         });

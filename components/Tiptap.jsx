@@ -9,8 +9,6 @@ import Paragraph from '@tiptap/extension-paragraph'
 import Heading from '@tiptap/extension-heading'
 import CodeBlock from '@tiptap/extension-code-block'
 
-
-import { convertJsonToJsx } from '@/utils/convertJsonToJsx'
 import PrismLoader from './PrismLoader'
 import { useRouter } from 'next/navigation'
 
@@ -59,54 +57,37 @@ const MenuBar = ({ editor }) => {
                 <button onClick={() => editor.chain().focus().setTextAlign('justify').run()} className={`btn ${editor.isActive({ textAlign: 'justify' }) ? 'btn-primary' : 'btn-neutral'}`}>
                     Justify
                 </button>
-                <button
+                {/* <button
                     onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                     className={editor.isActive('codeBlock') ? 'is-active' : ''}
                 >
                     Toggle code block
-                </button>
-                <button
+                </button> */}
+                {/* <button
                     onClick={() => editor.chain().focus().setCodeBlock().run()}
                     disabled={editor.isActive('codeBlock')}
                 >
                     Set code block
-                </button>
-
-                <button onClick={() => editor.chain().focus()}>JS</button>
+                </button> */}
             </div>
         </div>
     )
 }
 
-const Tiptap = () => {
+const Tiptap = ({ updateContent }) => {
     const [content, setContent] = useState('');
     const [displayContent, setDisplayContent] = useState('')
     const [title, setTitle] = useState('')
+    const [saved, setSaved] = useState(false)
     const router = useRouter();
 
     const handleSave = async () => {
-        setDisplayContent(content);
 
-        const res = await fetch('/api/item', {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({
-                title: title,
-                content: content
-            })
-        });
 
-        if (res.status === 201) {
-            console.log(res)
-            // setIsLoading(false)
-            const data = await res.json();
-            const id = data._id
-            router.push(`/item/${id}`)
-        } else {
-            // alert('Not added to cart')
-        }
+
+        updateContent(displayContent)
+
+        setSaved(true)
     }
 
     const editor = useEditor({
@@ -129,21 +110,23 @@ const Tiptap = () => {
             }),
             CodeBlock.configure({
                 HTMLAttributes: {
-                    class: 'bg-black text-white p-2 rounded-md',
+                    class: 'bg-[#272822] text-white p-2 rounded-md',
                 },
             })
         ],
-        content: '<p>Hello World! 🌎️</p>',
+        content: '',
         editorProps: {
             attributes: {
-                class: 'mt-5 border border-black rounded-md shadow-xl bg-white w-[200px] sm:w-[500px] min-h-[500px] p-5 text-black'
+                class: `mt-5 border-4 rounded-md shadow-xl bg-white w-[200px] sm:w-[500px] min-h-[500px] p-5 text-black ${saved ? 'border-green-500' : 'border-red-500'}`,
             }
         },
         onUpdate: ({ editor }) => {
-            const json = editor.getJSON()
-
-            setContent(json);
-            console.log(content)
+            // const json = editor.getJSON()
+            setDisplayContent(editor.getJSON());
+            // updateContent(json)
+            // setContent(json);
+            setSaved(false)
+            // console.log(content)
 
 
             // send the content to an API here
@@ -156,30 +139,48 @@ const Tiptap = () => {
     }
 
     return (
-        <div className='flex flex-row'>
-            <div className='flex flex-col items-center'>
-                <MenuBar editor={editor} />
-                <EditorContent editor={editor} className='' />
-                <button className='btn btn-primary' onClick={handleSave}>Save</button>
-            </div>
-            <input type="text" placeholder="Title" className="input input-bordered w-full max-w-xs" onChange={(e) => setTitle(e.target.value)} value={title} />
-            <div className='bg-gray-400 text-black w-[400px] min-h-[250px] p-3 rounded-md'>
-                {displayContent !== '' && displayContent.content.map((item, index) => {
-                    if (item.content === undefined) {
-                        return (<p key={index} className='my-5'></p>)
-                    } else {
-                        if (item.type === "heading") {
-                            {/* return (item.content ? <h1 className={`text-xl ${item.content[0].marks?.find(e => e.type === 'bold') != undefined ? 'font-bold' : ''} ${item.content[0].marks?.find(e => e.type === 'italic') != undefined ? 'italic' : ''} ${item.content[0].marks?.find(e => e.type === 'strike') != undefined ? 'line-through' : ''}`} key={index}>{item.content[0].text}</h1> : '') */ }
-                            return (item.content ? <h1 key={index} className={`text-wrap ${item.attrs.textAlign === 'left' ? 'text-left' : ''} ${item.attrs.textAlign === 'center' ? 'text-center' : ''} ${item.attrs.textAlign === 'right' ? 'text-right' : ''} ${item.attrs.textAlign === 'justify' ? 'text-justify' : ''}`}>{item.content.map((subItem, index) => (<span key={index} className={`text-xl ${subItem.marks?.find(e => e.type === 'bold') != undefined ? 'font-bold' : ''} ${subItem.marks?.find(e => e.type === 'italic') != undefined ? 'italic' : ''} ${subItem.marks?.find(e => e.type === 'strike') != undefined ? 'line-through' : ''} ${subItem.marks?.find(e => e.type === 'highlight') != undefined ? 'bg-yellow-300' : ''}`}>{subItem.text}</span>))}</h1> : '')
-                        }
-                        else if (item.type === "paragraph") {
-                            return (item.content ? <p key={index} className={`text-wrap ${item.attrs.textAlign === ' left' ? 'text-left' : ''} ${item.attrs.textAlign === 'center' ? 'text-center' : ''} ${item.attrs.textAlign === 'right' ? 'text-right' : ''} ${item.attrs.textAlign === 'justify' ? 'text-justify' : ''}`} > {item.content.map((subItem, index) => (<span key={index} className={`text-md ${subItem.marks?.find(e => e.type === 'bold') != undefined ? 'font-bold' : ''} ${subItem.marks?.find(e => e.type === 'italic') != undefined ? 'italic' : ''} ${subItem.marks?.find(e => e.type === 'strike') != undefined ? 'line-through' : ''} ${subItem.marks?.find(e => e.type === 'highlight') != undefined ? 'bg-yellow-300' : ''}`}>{subItem.text}</span>))}</p> : '')
-                        } else {
-                            return (item.content ? <PrismLoader language={item.attrs.language} content={item.content[0].text} /> : '')
-                        }
-                    }
-                })}
-            </div>
+        <div className='flex flex-col items-center'>
+            <MenuBar editor={editor} />
+
+            {saved ?
+                <div className="badge badge-success gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="inline-block h-4 w-4 stroke-current">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Saved
+                </div>
+                :
+
+                <div className="badge badge-error gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="inline-block h-4 w-4 stroke-current">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Not saved
+                </div>
+            }
+
+            <EditorContent editor={editor} className='' />
+
+
+
+
+            <button className='btn btn-primary' onClick={handleSave}>Save Content</button>
         </div>
 
     )

@@ -15,6 +15,10 @@ const postSchema = new mongoose.Schema({
     },
     category: {
         type: String
+    },
+    draft: {
+        required: true,
+        type: Boolean
     }
 });
 
