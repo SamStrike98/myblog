@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from 'daisyui'
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,7 +14,16 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        exo: [
+          "Exo 2",
+          "sans-serif",
+        ],
+      },
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: ["dim"],
+  },
+  plugins: [daisyui],
 };
