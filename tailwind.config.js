@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ["dim"],
+    themes: ["night"],
   },
   plugins: [daisyui],
 };

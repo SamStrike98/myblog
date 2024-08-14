@@ -1,5 +1,6 @@
 import { Inter, Exo_2 } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 const exo2 = Exo_2({ subsets: ["latin"] });
@@ -12,7 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={exo2.className}>{children}</body>
+      <body className={exo2.className}>
+        <Navbar />
+        {children}</body>
     </html>
   );
 }

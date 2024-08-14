@@ -1,5 +1,6 @@
 import React from 'react'
 import PrismLoader from './PrismLoader'
+import Badge from './Badge'
 
 const PreviewModal = ({ data }) => {
     return (
@@ -14,7 +15,7 @@ const PreviewModal = ({ data }) => {
                     {/* PREVIEW OF POST */}
                     <div className='bg-[#f2f2f2] text-black min-h-[250px] p-3 rounded-md mt-5'>
                         <h2 className='font-extrabold text-3xl text-center'>{data.title}</h2>
-
+                        <Badge text={data.category} />
                         <div className='mt-5'>
                             {data.content !== '' && data.content.content.map((item, index) => {
                                 if (item.content === undefined) {

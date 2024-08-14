@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 export const POST = async (request) => {
     // if (request.auth?.user.role === 'admin') {
     try {
-        const { title, content, draft } = await request.json();
+        const { title, content, draft, category } = await request.json();
 
         // Create a DB Connection
         await dbConnect();
@@ -17,7 +17,7 @@ export const POST = async (request) => {
 
         // Form a DB Payload
         const newPost = {
-            title, content, createdAt, draft
+            title, content, createdAt, draft, category
         };
 
         // Update the DB
