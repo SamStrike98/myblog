@@ -1,5 +1,4 @@
 import NextAuth from "next-auth"
-// import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "@/lib/mongo"
 import User from '@/models/user-model'
@@ -10,30 +9,6 @@ import bcrypt from "bcryptjs"
 
 
 const providers = [
-    GoogleProvider({
-        clientId: process.env.AUTH_GOOGLE_ID,
-        clientSecret: process.env.AUTH_GOOGLE_SECRET,
-        allowDangerousEmailAccountLinking: true,
-        profile(profile) {
-            return {
-                // Return the default fields
-                id: profile.sub,
-                name: profile.name,
-                email: profile.email,
-                image: profile.picture,
-                // Add a new one
-                displayName: profile.name,
-            };
-        },
-
-        authorization: {
-            params: {
-                prompt: 'consent',
-                access_type: 'offline',
-                response_type: 'code'
-            }
-        }
-    }),
     CredentialsProvider({
         credentials: {
             email: { label: "Email", type: "text" },
@@ -69,24 +44,16 @@ const providers = [
     })
 ]
 
-export const providerMap = providers.map((provider) => {
-    if (typeof provider === "function") {
-        const providerData = provider()
-        return { id: providerData.id, name: providerData.name }
-    } else {
-        return { id: provider.id, name: provider.name }
-    }
-})
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-    // session: {
-    //     strategy: 'jwt'
-    // },
-    adapter: MongoDBAdapter(clientPromise),
-    providers: providers,
     session: {
         strategy: 'jwt'
     },
+    adapter: MongoDBAdapter(clientPromise),
+    providers: providers,
+    // session: {
+    //     strategy: 'jwt'
+    // },
 
     callbacks: {
         async jwt({ token, user }) {
@@ -94,6 +61,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (user) {
                 token.accessToken = user.access_token;
                 token.id = user.id;
+                token.role = user.role;
             }
             return token;
         },
@@ -101,6 +69,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             // Send properties to the client, like an access_token and user id from a provider.
             session.accessToken = token.accessToken;
             session.user.id = token.id;
+            session.user.role = token.role;
+            // session.user.role = user.role;
 
 
             return session;
@@ -133,9 +103,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return false;
         }
     },
-    // pages: {
-    //     signIn: "/signin"
-    // }
 })
 
 

@@ -7,7 +7,6 @@ const page = async () => {
 
     return (
         <div>
-            <h1>Admin Section</h1>
 
             {data &&
                 <PostsList data={data} />
