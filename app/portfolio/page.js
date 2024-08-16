@@ -11,6 +11,7 @@ import { FaCcStripe } from "react-icons/fa";
 import { FaKey } from "react-icons/fa6";
 import { SiMongodb } from "react-icons/si";
 import Container from '@/components/Container';
+import Image from 'next/image';
 
 const projects = [
     {
@@ -124,11 +125,116 @@ const page = () => {
     return (
         <div className='mb-36 lg:mt-36'>
             <Container>
+
+
+                <h2>About</h2>
+                <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
+                    <div className='p-[4px] rounded-full overflow-hidden bg-gradient-to-r hover:bg-gradient-to-b from-blue-800 to-blue-400'>
+                        <div className='rounded-[calc(9999px-4px)] w-[250px] h-[250px] overflow-hidden flex flex-row justify-center items-end bg-base-100'>
+                            <Image alt="Profile Image" src="/professionalPhoto.png" width={480} height={390} className='' />
+                        </div>
+                    </div>
+                    <p className='w-[80%] sm:w-[40%] font-bold text-lg'>{"My journey into building websites started during lockdown with the aim of challenging myself to learn something new. Having thoroughly enjoyed learning frontend website development in my spare time, I'm now looking to turn it into a career."}</p>
+                </div>
+
+
                 <h2>Projects</h2>
                 <ul className='flex flex-row flex-wrap gap-6 justify-evenly'>
                     {projects.map(project => (
                         <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
                     ))}
+                </ul>
+
+                <h2>Experience</h2>
+                <div className='flex flex-col gap-5 w-[80%]'>
+                    <div className="collapse collapse-plus bg-neutral">
+                        <input type="radio" name="my-accordion-3" defaultChecked />
+                        <div className="collapse-title text-xl font-medium">University of East Anglia - 2016-2019</div>
+                        <div className="collapse-content">
+                            <p>{"I studied Maths for 3 years at University, graduating with a 2:1. I learned a range of topics from Number Theory to Fluid Dynamics; however, the module I gained the most from was problem-solving. The actual Maths concepts were simpler than other modules, but it required an element of planning and lateral thinking."}</p>
+                        </div>
+                    </div>
+                    <div className="collapse collapse-plus bg-neutral">
+                        <input type="radio" name="my-accordion-3" />
+                        <div className="collapse-title text-xl font-medium">Rose Builders - 2019-2022</div>
+                        <div className="collapse-content">
+                            <p>{"Having finished University, my first job was at Rose Builders, working in the accounts team. Working to strict monthly and yearly deadlines, I also assisted with the introduction of new technology into the company to help speed up a number of processes."}</p>
+                        </div>
+                    </div>
+                    <div className="collapse collapse-plus bg-neutral">
+                        <input type="radio" name="my-accordion-3" />
+                        <div className="collapse-title text-xl font-medium">Essex Carers Network - 2022-</div>
+                        <div className="collapse-content">
+                            <p>{"At Essex Carers Network, I've worked on a variety of tasks, from helping to populate and keep their website up to date to building bespoke spreadsheets to increase efficiency and addressing general IT issues."}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h2>Experience</h2>
+                <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+                    <li>
+                        <div className="timeline-middle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                className="h-5 w-5">
+                                <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                    clipRule="evenodd" />
+                            </svg>
+                        </div>
+                        <div className="timeline-start mb-10 md:text-end">
+                            <time className="font-mono italic">2016-2019</time>
+                            <div className="text-lg font-black">University of East Anglia</div>
+                            {"I studied Maths for 3 years at University, graduating with a 2:1. I learned a range of topics from Number Theory to Fluid Dynamics; however, the module I gained the most from was problem-solving. The actual Maths concepts were simpler than other modules, but it required an element of planning and lateral thinking."}
+                        </div>
+                        <hr />
+                    </li>
+                    <li>
+                        <hr />
+                        <div className="timeline-middle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                className="h-5 w-5">
+                                <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                    clipRule="evenodd" />
+                            </svg>
+                        </div>
+                        <div className="timeline-end mb-10">
+                            <time className="font-mono italic">2019-2022</time>
+                            <div className="text-lg font-black">Rose Builders</div>
+                            {"Having finished University, my first job was at Rose Builders, working in the accounts team. Working to strict monthly and yearly deadlines, I also assisted with the introduction of new technology into the company to help speed up a number of processes."}
+                        </div>
+                        <hr />
+                    </li>
+                    <li>
+                        <hr />
+                        <div className="timeline-middle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                className="h-5 w-5">
+                                <path
+                                    fillRule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                    clipRule="evenodd" />
+                            </svg>
+                        </div>
+                        <div className="timeline-start mb-10 md:text-end">
+                            <time className="font-mono italic">2022-</time>
+                            <div className="text-lg font-black">Essex Carers Network</div>
+                            {"At Essex Carers Network, I've worked on a variety of tasks, from helping to populate and keep their website up to date to building bespoke spreadsheets to increase efficiency and addressing general IT issues."}
+                        </div>
+                        <hr />
+                    </li>
                 </ul>
             </Container>
 
