@@ -11,7 +11,7 @@ const page = async () => {
         redirect('/admin')
     }
     return (
-        <div className='mt-36'>
+        <div className='mb-36 lg:mt-36'>
             <Container>
                 <h1>Admin Login</h1>
                 <LoginForm />

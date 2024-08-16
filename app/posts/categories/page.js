@@ -31,7 +31,7 @@ const categories = [
 
 const page = () => {
     return (
-        <div className="my-10">
+        <div className="mb-36 lg:mt-36">
             <Container>
                 <ul className="flex flex-row justify-between items-center flex-wrap w-full">{categories.map(category => (
                     <CategorySection key={category.id} title={category.title} icon={category.icon} />

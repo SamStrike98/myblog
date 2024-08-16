@@ -2,6 +2,7 @@ import React from 'react'
 import PostsList from '@/components/PostsList';
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
+import Container from '@/components/Container';
 
 const page = async () => {
     const session = await auth();
@@ -14,13 +15,14 @@ const page = async () => {
     const data = await res.json();
 
     return (
-        <div>
-            <h1>Admin Section</h1>
+        <div className='mb-36 lg:mt-36'>
+            <Container>
+                <h1>Admin Section</h1>
 
-            {data &&
-                <PostsList data={data} />
-            }
-
+                {data &&
+                    <PostsList data={data} />
+                }
+            </Container>
         </div>
     )
 }

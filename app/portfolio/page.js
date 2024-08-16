@@ -10,6 +10,7 @@ import { SiStrapi } from "react-icons/si";
 import { FaCcStripe } from "react-icons/fa";
 import { FaKey } from "react-icons/fa6";
 import { SiMongodb } from "react-icons/si";
+import Container from '@/components/Container';
 
 const projects = [
     {
@@ -121,12 +122,15 @@ const projects = [
 
 const page = () => {
     return (
-        <div className='my-24'>
-            <ul className='flex flex-row flex-wrap gap-4 justify-evenly'>
-                {projects.map(project => (
-                    <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
-                ))}
-            </ul>
+        <div className='mb-36 lg:mt-36'>
+            <Container>
+                <ul className='flex flex-row flex-wrap gap-4 justify-evenly'>
+                    {projects.map(project => (
+                        <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
+                    ))}
+                </ul>
+            </Container>
+
         </div>
     )
 }
