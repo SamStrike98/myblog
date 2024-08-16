@@ -39,14 +39,22 @@ const navLinks = [
 const Navbar = async () => {
     const session = await auth()
     return (
-        <div>
+        <div className='z-50'>
             <Container>
-                <div className='w-full'><h1 className={`text-5xl font-extrabold my-5 ml-5 bg-gradient-to-r transition-all ${session?.user.role === 'admin' ? 'from-green-800 to-green-100' : 'from-blue-800 to-blue-100'}  text-transparent bg-clip-text text-left`}>Sam Strike {session?.user.role === 'admin' ? '(Logged In)' : ''}</h1></div>
-                <div className='bg-base-100 p-[4px] bg-gradient-to-r transition-all from-blue-800 to-blue-400 rounded-3xl fixed w-[90%] bottom-5 lg:top-[95px] lg:h-fit'>
+                <div className='w-full'><h1 className={`text-5xl font-extrabold my-5 ml-5 bg-gradient-to-r transition-all ${session?.user.role === 'admin' ? 'from-green-800 to-green-100' : 'from-blue-800 to-blue-100'}  text-transparent bg-clip-text text-left`}>Sam Strike {session?.user.role === 'admin' ? <Link href={'/admin/create-post'}>Create Post</Link> : ''}</h1></div>
+                <div className='bg-base-100 p-[4px] bg-gradient-to-r transition-all from-blue-800 to-blue-400 rounded-3xl fixed w-[90%] bottom-5 lg:top-[95px] lg:h-fit z-50'>
 
                     <ul className='flex flex-row justify-evenly bg-base-100 rounded-[calc(1.5rem-4px)] h-[80px]'>
                         {navLinks.map(item => (
-                            <li key={item.id} className='cursor-pointer flex flex-row gap-2 items-center font-bold text-md sm:text-xl md:text-2xl hover:text-primary transition-colors'><Link href={item.link} className='flex flex-row items-center gap-3'><span className='hidden md:flex '>{item.title}</span><span className='text-3xl md:text-xl'>{item.icon}</span></Link></li>
+                            <li key={item.id} className='cursor-pointer flex flex-row gap-2 items-center font-bold text-md sm:text-xl md:text-2xl hover:text-primary transition-colors'>
+                                <Link href={item.link} className='flex flex-row items-center gap-3'>
+                                    <span className='hidden md:flex '>{item.title}</span>
+
+                                    <div className="md:hidden tooltip tooltip-top" data-tip={item.title}>
+                                        <span className='text-3xl md:text-xl'>{item.icon}</span>
+                                    </div>
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </div>

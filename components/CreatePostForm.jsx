@@ -4,6 +4,7 @@ import Tiptap from "./Tiptap"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import PreviewModal from "./PreviewModal"
+import Container from "./Container"
 
 const CreatePostForm = () => {
     const router = useRouter()
@@ -41,34 +42,35 @@ const CreatePostForm = () => {
         }
     }
     return (
-        <div>
-            <input onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" value={title} className="input input-bordered w-full max-w-xs" />
-            <div className="form-control">
-                <label className="label cursor-pointer">
-                    <span className="label-text">Draft</span>
-                    <input type="checkbox" onChange={(e) => setIsDraft(e.target.checked)} defaultChecked className="checkbox" />
-                </label>
-            </div>
-
-            <label className="form-control w-full max-w-xs">
-                <div className="label">
-                    <span className="label-text">Category</span>
+        <div className="mt-36">
+            <Container>
+                <input onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" value={title} className="input input-bordered w-full max-w-xs" />
+                <div className="form-control">
+                    <label className="label cursor-pointer">
+                        <span className="label-text">Draft</span>
+                        <input type="checkbox" onChange={(e) => setIsDraft(e.target.checked)} defaultChecked className="checkbox" />
+                    </label>
                 </div>
-                <select className="select select-bordered" onChange={(e) => setCategory(e.target.value)} value={category}>
-                    <option value={'Other'} defaultValue>Other</option>
-                    <option value={'Maths'}>Maths</option>
-                    <option value={'Web Development'}>Web Development</option>
-                    <option value={'Physics'}>Physics</option>
-                </select>
-            </label>
 
-            <Tiptap updateContent={updateContent} />
-            <button className="btn btn-primary" onClick={handleSubmit}>Create Post</button>
+                <label className="form-control w-full max-w-xs">
+                    <div className="label">
+                        <span className="label-text">Category</span>
+                    </div>
+                    <select className="select select-bordered" onChange={(e) => setCategory(e.target.value)} value={category}>
+                        <option value={'Other'} defaultValue>Other</option>
+                        <option value={'Maths'}>Maths</option>
+                        <option value={'Web Development'}>Web Development</option>
+                        <option value={'Physics'}>Physics</option>
+                    </select>
+                </label>
 
-            <PreviewModal data={{ title, content, category }} />
+                <Tiptap updateContent={updateContent} />
+                <button className="btn btn-primary" onClick={handleSubmit}>Create Post</button>
+
+                <PreviewModal data={{ title, content, category }} />
 
 
-
+            </Container>
 
         </div>
     )

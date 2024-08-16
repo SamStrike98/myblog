@@ -8,7 +8,7 @@ const page = async ({ params }) => {
     const res = await fetch(`${process.env.URL}/api/posts/${id}`);
     const data = await res.json();
     return (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center my-36 '>
             <Container>
                 <SinglePost title={data.title} content={data.content} createdAt={data.createdAt} category={data.category} />
             </Container>
