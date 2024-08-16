@@ -7,11 +7,11 @@ import Container from '@/components/Container';
 const page = async () => {
     const session = await auth();
     console.log(session)
-    if (session.user.role !== 'admin') {
+    if (session?.user.role !== 'admin') {
         return redirect('/')
     }
 
-    const res = await fetch(`${process.env.URL}/api/posts`, { cache: 'no-store' });
+    const res = await fetch(`${process.env.URL}/api/admin/posts`, { cache: 'no-store' });
     const data = await res.json();
 
     return (
