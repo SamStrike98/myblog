@@ -44,6 +44,8 @@ const projects = [
                 icon: <SiMongodb size={50} />
             },
         ],
+        repoLink: 'https://github.com/SamStrike98/gifts-by-breed',
+        liveSiteLink: 'https://gifts-by-breed.vercel.app/'
     },
     {
         id: 2,
@@ -67,6 +69,8 @@ const projects = [
                 icon: <SiStrapi size={50} />
             },
         ],
+        repoLink: 'https://github.com/SamStrike98/harmonford_estates',
+        liveSiteLink: 'https://harmonford-estates.vercel.app/'
     },
     {
         id: 3,
@@ -85,6 +89,8 @@ const projects = [
                 icon: <RiTailwindCssFill size={50} />
             },
         ],
+        repoLink: '',
+        liveSiteLink: ''
     },
     {
         id: 4,
@@ -108,6 +114,8 @@ const projects = [
                 icon: <RiJavascriptFill size={50} />
             }
         ],
+        repoLink: 'https://github.com/SamStrike98/Trainer-Experts',
+        liveSiteLink: ''
     },
 ]
 
@@ -116,7 +124,7 @@ const page = () => {
         <div className='my-24'>
             <ul className='flex flex-row flex-wrap gap-4 justify-evenly'>
                 {projects.map(project => (
-                    <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} />
+                    <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
                 ))}
             </ul>
         </div>

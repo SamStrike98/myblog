@@ -3,11 +3,15 @@
 import Image from "next/image"
 import { useState } from "react"
 import TechBadge from "./TechBadge"
+import Link from "next/link"
 
-const DesktopProject = ({ name, img, info, tech }) => {
+import { FaGithub } from "react-icons/fa";
+import { CgBrowser } from "react-icons/cg";
+
+const DesktopProject = ({ name, img, info, tech, repoLink, liveSiteLink }) => {
     const [isProject, setIsProject] = useState(true)
     return (
-        <div className='w-[400px] h-[300px] mb-36 mt-10'>
+        <div className='w-[300px] h-[225px] mb-36 mt-10'>
             <div className="mockup-browser bg-base-300 border ">
                 <div className="mockup-browser-toolbar ">
                     <div className="input">{name}</div>
@@ -23,6 +27,12 @@ const DesktopProject = ({ name, img, info, tech }) => {
                             </ul>
 
                             <p className="text-neutral p-3 font-bold text-lg leading-relaxed">{info}</p>
+
+                            <ul className="flex flex-row justify-evenly my-6">
+                                {repoLink && <div className="tooltip" data-tip="Github Repo"><a href={repoLink} target="_blank" rel="noopener noreferrer" className="text-primary"><FaGithub size={40} /></a></div>}
+                                {liveSiteLink && <div className="tooltip" data-tip="Live Site"><a href={liveSiteLink} target="_blank" rel="noopener noreferrer" className="text-primary"><CgBrowser size={40} /></a></div>}
+                            </ul>
+
                         </div>
 
                     }
