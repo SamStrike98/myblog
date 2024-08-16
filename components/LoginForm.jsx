@@ -18,7 +18,7 @@ const LoginForm = () => {
             if (response.error) {
                 setError(response.error.message)
             } else {
-                router.push('/')
+                router.push('/admin')
                 router.refresh()
             }
 

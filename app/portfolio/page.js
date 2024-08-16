@@ -124,7 +124,8 @@ const page = () => {
     return (
         <div className='mb-36 lg:mt-36'>
             <Container>
-                <ul className='flex flex-row flex-wrap gap-4 justify-evenly'>
+                <h2>Projects</h2>
+                <ul className='flex flex-row flex-wrap gap-6 justify-evenly'>
                     {projects.map(project => (
                         <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
                     ))}

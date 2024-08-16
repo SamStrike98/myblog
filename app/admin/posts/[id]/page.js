@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
 import SinglePost from '@/components/SinglePost';
+import Link from 'next/link';
 import React from 'react'
 
 const page = async ({ params }) => {
@@ -9,6 +10,8 @@ const page = async ({ params }) => {
     const data = await res.json();
     return (
         <div className='flex flex-col items-center mb-36 lg:mt-36'>
+            <p>Admin Edit Posts</p>
+            <Link href={`/admin/posts/${id}/edit`}>Edit</Link>
             <Container>
                 <SinglePost title={data.title} content={data.content} createdAt={data.createdAt} category={data.category} />
             </Container>

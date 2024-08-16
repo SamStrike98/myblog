@@ -74,9 +74,9 @@ const MenuBar = ({ editor }) => {
     )
 }
 
-const Tiptap = ({ updateContent }) => {
-    const [content, setContent] = useState('');
-    const [displayContent, setDisplayContent] = useState('')
+const Tiptap = ({ updateContent, prevContent }) => {
+    const [content, setContent] = useState(prevContent);
+    const [displayContent, setDisplayContent] = useState(prevContent)
     const [title, setTitle] = useState('')
     const [saved, setSaved] = useState(false)
     const router = useRouter();
@@ -114,7 +114,7 @@ const Tiptap = ({ updateContent }) => {
                 },
             })
         ],
-        content: '',
+        content: prevContent,
         editorProps: {
             attributes: {
                 class: `mt-5 border-4 rounded-md shadow-xl bg-white w-[200px] sm:w-[500px] min-h-[500px] p-5 text-black ${saved ? 'border-green-500' : 'border-red-500'}`,

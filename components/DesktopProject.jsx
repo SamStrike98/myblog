@@ -11,12 +11,12 @@ import { CgBrowser } from "react-icons/cg";
 const DesktopProject = ({ name, img, info, tech, repoLink, liveSiteLink }) => {
     const [isProject, setIsProject] = useState(true)
     return (
-        <div className='w-[300px] h-[225px] mb-36 mt-10'>
+        <div className='w-[300px] h-[225px] mb-44 mt-16'>
             <div className="mockup-browser bg-base-300 border ">
                 <div className="mockup-browser-toolbar ">
                     <div className="input">{name}</div>
                 </div>
-                <div className="bg-[#f2f2f2] overflow-y-scroll h-[300px] no-scrollbar">
+                <div className="bg-[#f2f2f2] overflow-y-scroll overflow-x-hidden h-[300px] no-scrollbar">
                     {isProject ? <Image width={1000} height={1000} alt={''} src={img} className="w-full rounded-b-md" />
                         :
                         <div>

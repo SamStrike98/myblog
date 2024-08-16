@@ -4,23 +4,23 @@ import Tiptap from "./Tiptap"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import PreviewModal from "./PreviewModal"
-import Container from "./Container"
 
-const CreatePostForm = () => {
+
+const EditPostForm = ({ id, prevTitle, prevContent, prevIsDraft, prevCategory }) => {
     const router = useRouter()
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [isDraft, setIsDraft] = useState(true);
-    const [category, setCategory] = useState('Other');
+    const [title, setTitle] = useState(prevTitle);
+    const [content, setContent] = useState(prevContent);
+    const [isDraft, setIsDraft] = useState(prevIsDraft);
+    const [category, setCategory] = useState(prevCategory);
 
     const updateContent = (newContent) => {
         setContent(newContent)
     }
 
     const handleSubmit = async () => {
-        const res = await fetch('/api/posts', {
-            method: 'POST',
+        const res = await fetch(`/api/admin/posts/${id}`, {
+            method: 'PATCH',
             headers: {
                 "content-type": "application/json",
             },
@@ -36,7 +36,8 @@ const CreatePostForm = () => {
             console.log(res)
             // setIsLoading(false)
 
-            router.push(`/admin`)
+            router.push(`/admin/posts/${id}`)
+            router.refresh();
         } else {
             // alert('Not added to cart')
         }
@@ -63,8 +64,8 @@ const CreatePostForm = () => {
                 </select>
             </label>
 
-            <Tiptap updateContent={updateContent} />
-            <button className="btn btn-primary" onClick={handleSubmit}>Create Post</button>
+            <Tiptap updateContent={updateContent} prevContent={prevContent} />
+            <button className="btn btn-primary" onClick={handleSubmit}>Update Post</button>
 
             <PreviewModal data={{ title, content, category }} />
 
@@ -72,4 +73,4 @@ const CreatePostForm = () => {
     )
 }
 
-export default CreatePostForm
+export default EditPostForm

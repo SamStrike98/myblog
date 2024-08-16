@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createPost, getAllPosts } from "@/queries/posts";
+import { createPost, getAllPublishedPosts } from "@/queries/posts";
 import dbConnect from "@/lib/mongo";
 import mongoose from "mongoose";
 import { auth } from "@/auth";
@@ -46,7 +46,7 @@ export const GET = async (request) => {
         await dbConnect();
         console.log("Database connected");
 
-        const posts = await getAllPosts();
+        const posts = await getAllPublishedPosts();
         // console.log("Fetched products:", products);
 
         return new NextResponse(JSON.stringify(posts), {
@@ -59,3 +59,5 @@ export const GET = async (request) => {
         });
     }
 };
+
+
