@@ -217,7 +217,7 @@ const page = () => {
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
-                                    fill="currentColor"
+                                    fill="#3bbbf3"
                                     className="h-5 w-5">
                                     <path
                                         fillRule="evenodd"
@@ -227,7 +227,7 @@ const page = () => {
                             </div>
                             <div className="timeline-start mb-10 md:text-end">
                                 <time className="font-mono italic">2016-2019</time>
-                                <div className="text-lg font-black">University of East Anglia</div>
+                                <div className="text-lg font-black text-primary">University of East Anglia</div>
                                 {"I studied Maths for 3 years at University, graduating with a 2:1. I learned a range of topics from Number Theory to Fluid Dynamics; however, the module I gained the most from was problem-solving. The actual Maths concepts were simpler than other modules, but it required an element of planning and lateral thinking."}
                             </div>
                             <hr />
@@ -238,7 +238,7 @@ const page = () => {
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
-                                    fill="currentColor"
+                                    fill="#3bbbf3"
                                     className="h-5 w-5">
                                     <path
                                         fillRule="evenodd"
@@ -248,7 +248,7 @@ const page = () => {
                             </div>
                             <div className="timeline-end mb-10">
                                 <time className="font-mono italic">2019-2022</time>
-                                <div className="text-lg font-black">Rose Builders</div>
+                                <div className="text-lg font-black text-primary">Rose Builders</div>
                                 {"Having finished University, my first job was at Rose Builders, working in the accounts team. Working to strict monthly and yearly deadlines, I also assisted with the introduction of new technology into the company to help speed up a number of processes."}
                             </div>
                             <hr />
@@ -259,7 +259,7 @@ const page = () => {
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
-                                    fill="currentColor"
+                                    fill="#3bbbf3"
                                     className="h-5 w-5">
                                     <path
                                         fillRule="evenodd"
@@ -269,7 +269,7 @@ const page = () => {
                             </div>
                             <div className="timeline-start mb-10 md:text-end">
                                 <time className="font-mono italic">2022-</time>
-                                <div className="text-lg font-black">Essex Carers Network</div>
+                                <div className="text-lg font-black text-primary">Essex Carers Network</div>
                                 {"At Essex Carers Network, I've worked on a variety of tasks, from helping to populate and keep their website up to date to building bespoke spreadsheets to increase efficiency and addressing general IT issues."}
                             </div>
                             <hr />

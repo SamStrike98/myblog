@@ -1,8 +1,14 @@
 import Container from '@/components/Container'
 import EditPostForm from '@/components/EditPostForm'
-import React from 'react'
+import { auth } from '@/auth';
 
 const page = async ({ params }) => {
+    const session = await auth();
+
+    if (session?.user.role !== 'admin') {
+        return redirect('/')
+    }
+
     const id = params.id
     const res = await fetch(`${process.env.URL}/api/posts/${id}`, { cache: 'no-store' });
     const data = await res.json();

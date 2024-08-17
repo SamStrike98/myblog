@@ -14,7 +14,7 @@ const PostsList = ({ data }) => {
     const [other, setOther] = useState(false);
 
     return (
-        <div className='my-24'>
+        <div className='my-10'>
             <Container>
                 <input
                     type="text"
