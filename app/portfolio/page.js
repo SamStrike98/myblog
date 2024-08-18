@@ -12,6 +12,7 @@ import { FaKey } from "react-icons/fa6";
 import { SiMongodb } from "react-icons/si";
 import { RiWordpressFill } from "react-icons/ri";
 import { FaPython } from "react-icons/fa6";
+import { SiDaisyui } from "react-icons/si";
 import Container from '@/components/Container';
 import Image from 'next/image';
 import PortfolioSectionTitle from '@/components/PortfolioSectionTitle';
@@ -180,7 +181,12 @@ const tech = [
         id: 12,
         name: 'Python',
         icon: <FaPython size={50} />
-    }
+    },
+    {
+        id: 13,
+        name: 'DaisyUI',
+        icon: <SiDaisyui size={50} />
+    },
 ]
 
 const page = () => {

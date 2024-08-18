@@ -48,7 +48,7 @@ const EditPostForm = ({ id, prevTitle, prevContent, prevIsDraft, prevCategory })
             <div className="form-control">
                 <label className="label cursor-pointer">
                     <span className="label-text">Draft</span>
-                    <input type="checkbox" onChange={(e) => setIsDraft(e.target.checked)} defaultChecked className="checkbox" />
+                    <input type="checkbox" onChange={(e) => setIsDraft(e.target.checked)} checked={isDraft} className="checkbox" />
                 </label>
             </div>
 

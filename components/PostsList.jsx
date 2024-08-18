@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import PostCard from './PostCard'
 import Container from './Container'
 import { useState } from 'react'

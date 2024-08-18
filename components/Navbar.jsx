@@ -25,7 +25,7 @@ const navLinks = [
     {
         id: 3,
         title: 'Portfolio',
-        link: `${process.env.URL}/portfolio`,
+        link: `${process.env.URL}/`,
         icon: <LuFileBarChart />
     },
     {
