@@ -7,10 +7,6 @@ import { useState } from 'react'
 const PostsList = ({ data }) => {
     const [search, setSearch] = useState('');
 
-    const [webDevelopment, setWebDevelopment] = useState(false);
-    const [maths, setMaths] = useState(false);
-    const [physics, setPhysics] = useState(false);
-    const [other, setOther] = useState(false);
 
     return (
         <div className='my-10'>
@@ -22,12 +18,6 @@ const PostsList = ({ data }) => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                {/* <div className='flex flex-row'>
-                    <button onClick={() => setWebDevelopment(!webDevelopment)} className={`btn ${webDevelopment ? 'btn-active' : 'btn-outline'} btn-success`}>Web Development</button>
-                    <button onClick={() => setMaths(!maths)} className={`btn ${maths ? 'btn-active' : 'btn-outline'} btn-primary`}>Maths</button>
-                    <button onClick={() => setPhysics(!physics)} className={`btn ${physics ? 'btn-active' : 'btn-outline'} btn-secondary`}>Physics</button>
-                    <button onClick={() => setOther(!other)} className={`btn ${other ? 'btn-active' : 'btn-outline'} btn-accent`}>Other</button>
-                </div> */}
 
                 <ul className='flex flex-row flex-wrap gap-8 my-6 px-4'>
                     {data.filter(item => item.title.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase())).map(post => (
