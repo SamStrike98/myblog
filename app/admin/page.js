@@ -13,7 +13,14 @@ const page = async () => {
         return redirect('/')
     }
 
-    const res = await fetch(`${process.env.URL}/api/admin/posts`, { cache: 'no-store' });
+    const res = await fetch(`${process.env.URL}/api/admin/posts`, {
+        cache: 'no-store',
+        headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+        }
+    });
     const data = await res.json();
 
     return (
