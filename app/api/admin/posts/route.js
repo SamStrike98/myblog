@@ -4,6 +4,7 @@ import dbConnect from "@/lib/mongo";
 import mongoose from "mongoose";
 import { auth } from "@/auth";
 
+export const dynamic = 'force-dynamic';
 export const GET = async (request) => {
     try {
         await dbConnect();

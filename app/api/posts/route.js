@@ -40,7 +40,7 @@ export const POST = auth(async function (request) {
     }
 });
 
-
+export const dynamic = 'force-dynamic';
 export const GET = async (request) => {
     try {
         await dbConnect();

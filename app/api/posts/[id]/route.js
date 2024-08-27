@@ -3,6 +3,7 @@ import { getPostById } from "@/queries/posts";
 import dbConnect from "@/lib/mongo";
 import mongoose from "mongoose";
 
+export const dynamic = 'force-dynamic';
 export const GET = async (request, { params }) => {
     try {
         await dbConnect();

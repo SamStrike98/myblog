@@ -4,14 +4,15 @@ import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import Container from '@/components/Container';
 
-export const dynamic = "force-dynamic"
 
+export const dynamic = 'force-dynamic';
 const page = async () => {
     const session = await auth();
     console.log(session)
     if (session?.user.role !== 'admin') {
         return redirect('/')
     }
+
 
     const res = await fetch(`${process.env.URL}/api/admin/posts`, {
         cache: 'no-store',
