@@ -4,6 +4,8 @@ import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import Container from '@/components/Container';
 
+export const dynamic = "force-dynamic"
+
 const page = async () => {
     const session = await auth();
     console.log(session)
