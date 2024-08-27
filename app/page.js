@@ -1,6 +1,7 @@
 import DesktopProject from '@/components/DesktopProject'
 import ProjectItem from '@/components/ProjectItem'
 import React from 'react'
+import { RiNodejsFill } from "react-icons/ri";
 import { RiHtml5Fill } from "react-icons/ri";
 import { RiJavascriptFill } from "react-icons/ri";
 import { RiNextjsFill } from "react-icons/ri";
@@ -13,6 +14,7 @@ import { SiMongodb } from "react-icons/si";
 import { RiWordpressFill } from "react-icons/ri";
 import { FaPython } from "react-icons/fa6";
 import { SiDaisyui } from "react-icons/si";
+
 import Container from '@/components/Container';
 import Image from 'next/image';
 import PortfolioSectionTitle from '@/components/PortfolioSectionTitle';
@@ -186,6 +188,11 @@ const tech = [
     id: 13,
     name: 'DaisyUI',
     icon: <SiDaisyui size={50} />
+  },
+  {
+    id: 14,
+    name: 'NodeJS',
+    icon: <RiNodejsFill size={50} />
   },
 ]
 
