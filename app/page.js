@@ -27,6 +27,8 @@ import Projects from '@/components/portfolio/Projects';
 import Experience from '@/components/portfolio/Experience';
 import Tech from '@/components/portfolio/Tech';
 
+import Contact from '@/components/portfolio/Contact';
+
 
 const page = () => {
   return (
@@ -42,9 +44,13 @@ const page = () => {
 
         <Tech />
 
+        <Contact />
+
         <section className='flex flex-row justify-center'>
           <Canvas />
         </section>
+
+
 
       </Container>
 

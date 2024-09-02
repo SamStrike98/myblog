@@ -129,25 +129,17 @@ const Projects = () => {
     const { isVisible } = useIntersectionObserver(myRef)
     const [isBouncing, setIsBouncing] = useState(false)
     return (
-        <section className='my-16'>
+        <section className='my-16 min-h-[50vh]'>
 
             <div ref={myRef} className={`${isVisible ? 'fadeInDown-animation' : 'opacity-0'}`}>
                 <PortfolioSectionTitle text={'Projects'} />
             </div>
-
-            {/* <span className={`${isVisible ? ' scale-150' : 'scale-0'} absolute delay-1000 duration-500 -translate-y-[150px]`}>
-                <Image src={car} width={150} height={150} alt={'car'} />
-            </span> */}
 
             <ul className={`flex flex-row flex-wrap gap-6 justify-evenly`}>
                 {projectsArr.map(project => (
                     <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
                 ))}
             </ul>
-
-            {/* <span className={`${isVisible ? '' : 'translate-x-[-1000px]'}`}>
-                <Image src={football} width={100} height={100} alt={'football'} className={`${isVisible ? 'animation-football' : ''} cursor-pointer`} />
-            </span> */}
 
 
         </section>
