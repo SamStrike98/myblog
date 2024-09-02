@@ -119,7 +119,7 @@ const Canvas = () => {
 
     }, [])
     return (
-        <canvas className="bg-white w-[90%] sm:w-[90vw] sm:h-[500px] rounded-md" ref={canvasRef}></canvas>
+        <canvas className="bg-white w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md" ref={canvasRef}></canvas>
     )
 }
 
