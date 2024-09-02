@@ -14,7 +14,7 @@ const About = () => {
     const myRef = useRef()
     const { isVisible } = useIntersectionObserver(myRef)
     return (
-        <section ref={myRef} className='my-16 h-[50vh]'>
+        <section ref={myRef} className='my-16 min-h-[50vh]'>
             <PortfolioSectionTitle text={'About'} />
             <div className='flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-10'>
 
