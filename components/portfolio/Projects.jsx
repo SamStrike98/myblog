@@ -129,9 +129,9 @@ const Projects = () => {
     const { isVisible } = useIntersectionObserver(myRef)
     const [isBouncing, setIsBouncing] = useState(false)
     return (
-        <section ref={myRef} className='my-16 min-h-[50vh]'>
+        <section className='my-16 min-h-[50vh]'>
 
-            <div className={`${isVisible ? 'fadeInDown-animation' : 'opacity-0'}`}>
+            <div ref={myRef} className={`${isVisible ? 'fadeInDown-animation' : 'opacity-0'}`}>
                 <PortfolioSectionTitle text={'Projects'} />
             </div>
 
@@ -139,7 +139,7 @@ const Projects = () => {
                 <Image src={car} width={150} height={150} alt={'car'} />
             </span> */}
 
-            <ul className={`${isVisible ? 'fadeInUp-animation ' : 'opacity-0'} flex flex-row flex-wrap gap-6 justify-evenly`}>
+            <ul className={`flex flex-row flex-wrap gap-6 justify-evenly`}>
                 {projectsArr.map(project => (
                     <DesktopProject key={project.id} name={project.name} img={project.img} info={project.info} tech={project.tech} repoLink={project.repoLink} liveSiteLink={project.liveSiteLink} />
                 ))}
