@@ -17,8 +17,8 @@ export default function PrismLoader({ content, language }) {
         Prism.highlightAll();
     }, []);
     return (
-        <div>
-            <pre className={lang}><code className={lang}>{content}</code></pre>
+        <div className="">
+            <pre className={`${lang} w-[85%] overflow-x-scroll`}><code className={lang}>{content}</code></pre>
             {/* <pre className={`language-${language === 'html' ? 'markup' : language}`}><code className={`language-${language === 'html' ? 'markup' : language}`}>{content}</code></pre> */}
         </div>
     )
