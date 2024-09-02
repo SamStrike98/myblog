@@ -129,7 +129,7 @@ const Projects = () => {
     const { isVisible } = useIntersectionObserver(myRef)
     const [isBouncing, setIsBouncing] = useState(false)
     return (
-        <section className='my-16 min-h-[50vh]'>
+        <section className='my-16'>
 
             <div ref={myRef} className={`${isVisible ? 'fadeInDown-animation' : 'opacity-0'}`}>
                 <PortfolioSectionTitle text={'Projects'} />
