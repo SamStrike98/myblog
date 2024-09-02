@@ -71,7 +71,7 @@ const Experience = () => {
                         <div className="text-lg font-black text-primary">Essex Carers Network</div>
                         {"At Essex Carers Network, I've worked on a variety of tasks, from helping to populate and keep their website up to date to building bespoke spreadsheets to increase efficiency and addressing general IT issues."}
                     </div>
-                    <hr className="bg-white" />
+                    <hr className={`bg-white ${isVisible ? 'fadeInLeft-animation md:fadeInRight-animation' : 'opacity-0'}`} />
                 </li>
             </ul>
         </section>

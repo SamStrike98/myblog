@@ -11,6 +11,8 @@ const ContactForm = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
 
+    const [success, setSuccess] = useState(false)
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -33,18 +35,18 @@ const ContactForm = () => {
         });
 
         if (res.status === 201) {
-            console.log(res)
-            console.log(name, email, message)
-
             setName('')
             setEmail('')
             setMessage('')
 
             setIsLoading(false)
+            setSuccess(true)
+
+            setTimeout(() => setSuccess(false), 2000);
 
             // router.push(`/admin`)
         } else {
-            alert('Error, message not send')
+            alert('Error, message not send.')
             setIsLoading(false)
         }
     }
@@ -82,7 +84,9 @@ const ContactForm = () => {
                     <span className="loading loading-spinner loading-sm"></span>
                 </button>
                 :
-                <button onClick={handleSubmit} className="btn btn-primary w-[200px] self-center" type="submit">Submit</button>
+                success ? <button className="btn btn-success w-[200px] self-center">Sent</button>
+                    :
+                    <button onClick={handleSubmit} className="btn btn-primary w-[200px] self-center" type="submit">Submit</button>
             }
 
             {error !== '' ?
