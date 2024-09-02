@@ -1,6 +1,7 @@
 import { Inter, Exo_2 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,10 +14,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="overflow-x-hidden">
-      <body className={`${exo2.className}`}>
+    <html lang="en" className="bg-backgroundImage bg-[#0f172a]  bg-blend-overlay">
+      <body className={`${exo2.className}  overflow-x-hidden`}>
         <Navbar />
-        {children}</body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
