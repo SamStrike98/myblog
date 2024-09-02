@@ -42,7 +42,7 @@ const page = () => {
 
         <Tech />
 
-        <section className='border-primary border-4 rounded-md'>
+        <section className='flex flex-row justify-center'>
           <Canvas />
         </section>
 
