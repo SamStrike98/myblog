@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="bg-backgroundImage bg-[#0f172a]  bg-blend-overlay bg-no-repeat overflow-x-hidden">
+    <html lang="en" className="bg-prism-image bg-[#0f172a]  bg-blend-overlay bg-no-repeat overflow-x-hidden">
       <body className={`${exo2.className}  overflow-x-hidden`}>
         <Navbar />
         {children}
