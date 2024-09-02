@@ -1,18 +1,23 @@
 'use client'
 
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useRef } from "react"
+import useIntersectionObserver from "@/hooks/useIntersectionObserver"
 import TechBadge from "./TechBadge"
 import Link from "next/link"
 
 import { FaGithub } from "react-icons/fa";
 import { CgBrowser } from "react-icons/cg";
 
+
+
 const DesktopProject = ({ name, img, info, tech, repoLink, liveSiteLink }) => {
     const [isProject, setIsProject] = useState(true)
+    const myRef = useRef()
+    const { isVisible } = useIntersectionObserver(myRef)
     return (
-        <div className='w-[300px] h-[225px] mb-44 mt-16'>
-            <div className="mockup-browser bg-base-300 border ">
+        <div ref={myRef} className={`${isVisible ? 'fadeInUp-animation' : 'opacity-0'} w-[300px] h-[225px] mb-44 mt-16`}>
+            <div className="mockup-browser bg-base-300 border-4 border-primary">
                 <div className="mockup-browser-toolbar ">
                     <div className="input">{name}</div>
                 </div>
@@ -39,7 +44,7 @@ const DesktopProject = ({ name, img, info, tech, repoLink, liveSiteLink }) => {
                 </div>
             </div>
 
-            <div className="flex flex-row justify-center"><button className="btn btn-neutral w-[150px] my-5" onClick={() => setIsProject(!isProject)}>{isProject ? 'View Info' : 'View Project'}</button></div>
+            <div className="flex flex-row justify-center"><button className="btn  w-[150px] my-5" onClick={() => setIsProject(!isProject)}>{isProject ? 'View Info' : 'View Project'}</button></div>
         </div>
     )
 }
