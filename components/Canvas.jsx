@@ -204,11 +204,15 @@ const Canvas = () => {
 
         function nextLevel() {
             setLoadingNextLevel(false)
-
-            gameStart()
+            init();
+            setGameOver(false);
+            cancelAnimationFrame(animationId); // Cancel any previous animation frames
+            animate();
+            spawnEnemies();
         }
 
         function gameStart() {
+            level = 1
             init();
             setGameOver(false);
             cancelAnimationFrame(animationId); // Cancel any previous animation frames
