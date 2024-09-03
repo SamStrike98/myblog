@@ -164,7 +164,11 @@ const Canvas = () => {
                 const dist = Math.hypot(player1.posX - enemy.posX, player1.posY - enemy.posY);
                 if (dist - enemy.width / 2 - player1.width / 2 <= 0) {
                     cancelAnimationFrame(animationId);
+
                     setGameOver(true);
+                    setLvl(1)
+
+                    level = 1
                 }
 
                 bulletsArr.forEach((bullet, bulletIdx) => {
