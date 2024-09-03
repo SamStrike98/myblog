@@ -276,8 +276,9 @@ const Canvas = () => {
                 </div>
 
                 <div className={`${!loadingNextLevel ? 'hidden' : ''} absolute w-1/2 h-1/4 top-[40%] left-1/4 rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center`}>
-                    <h2 className="text-bold text-xl">Score: <span className="text-3xl font-extrabold">{score}</span></h2>
-                    <button ref={nextLevelBtnRef} className="btn btn-primary w-[150px] text-white">Start Game</button>
+                    <h2 className="text-bold text-xl">Current Score: <span className="text-3xl font-extrabold">{score}</span></h2>
+                    <p>Next Up Level {lvl}</p>
+                    <button ref={nextLevelBtnRef} className="btn btn-primary w-[150px] text-white">Next Level</button>
                 </div>
                 <canvas className="bg-white w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md" ref={canvasRef}></canvas>
             </div>
