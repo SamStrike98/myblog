@@ -9,7 +9,7 @@ const Canvas = () => {
     const nextLevelBtnRef = useRef(null);
     const [score, setScore] = useState(0);
     const [lvl, setLvl] = useState(1);
-    let level = 1;
+    var level = 1;
     const [gameOver, setGameOver] = useState(true);
     const [loadingNextLevel, setLoadingNextLevel] = useState(false)
 
@@ -140,6 +140,7 @@ const Canvas = () => {
             const spawnInterval = setInterval(() => {
                 enemiesArr.push(new Enemy(20, 20, 5, 5, velocity));
                 i++;
+                console.log('check', level)
                 if (i === fibonacci(level)) {
 
                     clearInterval(spawnInterval);
