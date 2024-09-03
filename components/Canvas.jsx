@@ -1,17 +1,22 @@
 'use client'
 
 import { useRef, useEffect, useState } from "react"
+import { fibonacci } from "@/utils/fibonacci";
 
 const Canvas = () => {
     const canvasRef = useRef(null);
-    const btnRef = useRef(null);
+    const startBtnRef = useRef(null);
+    const nextLevelBtnRef = useRef(null);
     const [score, setScore] = useState(0);
-    const [level, setLevel] = useState(0);
+    const [lvl, setLvl] = useState(1);
+    let level = 1;
     const [gameOver, setGameOver] = useState(true);
+    const [loadingNextLevel, setLoadingNextLevel] = useState(false)
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        const btn = btnRef.current;
+        const startBtn = startBtnRef.current;
+        const nextLevelBtn = nextLevelBtnRef.current;
         const c = canvas.getContext('2d');
 
         canvas.width = 500;
@@ -106,19 +111,24 @@ const Canvas = () => {
 
         let player1;
         let enemiesArr;
+        let deadEnemiesArr;
         let bulletsArr;
         let animationId;
 
-        function init(level) {
+
+        function init() {
+            console.log('init', level)
             player1 = new Player(20, 20, 50, 50);
             enemiesArr = [];
+            deadEnemiesArr = [];
             bulletsArr = [];
-            if (level === 0) {
+            if (level === 1) {
                 setScore(0);
             }
         }
 
-        function spawnEnemies(level) {
+        function spawnEnemies() {
+            console.log('spawn', level)
             const playerCenterX = player1.posX + player1.width / 2;
             const playerCenterY = player1.posY + player1.height / 2;
             const angle = Math.atan2(playerCenterY, playerCenterX);
@@ -130,7 +140,7 @@ const Canvas = () => {
             const spawnInterval = setInterval(() => {
                 enemiesArr.push(new Enemy(20, 20, 5, 5, velocity));
                 i++;
-                if (i === level + 1) {
+                if (i === fibonacci(level)) {
 
                     clearInterval(spawnInterval);
                 }
@@ -155,7 +165,6 @@ const Canvas = () => {
                 if (dist - enemy.width / 2 - player1.width / 2 <= 0) {
                     cancelAnimationFrame(animationId);
                     setGameOver(true);
-                    setLevel(0);
                 }
 
                 bulletsArr.forEach((bullet, bulletIdx) => {
@@ -163,28 +172,44 @@ const Canvas = () => {
 
                     if (dist - enemy.width / 2 - bullet.radius <= 0) {
                         enemiesArr.splice(enemyIdx, 1);
+                        deadEnemiesArr.push(enemy);
                         bulletsArr.splice(bulletIdx, 1);
+
                         setScore(prevScore => prevScore + 1);
 
-                        if (enemiesArr.length === 0) {
-                            setGameOver(true);
-                            setLevel(prevLevel => prevLevel + 1);
+                        console.log('animate', level)
+                        if (deadEnemiesArr.length === fibonacci(level)) {
+                            // setGameOver(true);
+                            setLvl(prevLvl => prevLvl + 1)
+                            level++
+                            setLoadingNextLevel(true)
                         }
                     }
                 });
             });
         }
 
-        btn.addEventListener('click', () => {
-            gameStart(level);
+        startBtn.addEventListener('click', () => {
+            gameStart();
         });
 
-        function gameStart(level) {
-            init(level);
+        nextLevelBtn.addEventListener('click', () => {
+            // setLevel(prevLevel => prevLevel + 1)
+            nextLevel();
+        });
+
+        function nextLevel() {
+            setLoadingNextLevel(false)
+
+            gameStart()
+        }
+
+        function gameStart() {
+            init();
             setGameOver(false);
             cancelAnimationFrame(animationId); // Cancel any previous animation frames
             animate();
-            spawnEnemies(level);
+            spawnEnemies();
         }
 
         // Handle Key Events
@@ -240,14 +265,19 @@ const Canvas = () => {
     return (
         <>
             <div className="flex flex-col">
-                <p className="font-bold text-lg text-primary">Level: {level}</p>
+                <p className="font-bold text-lg text-primary">Level: {lvl}</p>
                 <p className="font-bold text-lg text-primary">Score: {score}</p>
             </div>
 
             <div className="relative w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md">
                 <div className={`${!gameOver ? 'hidden' : ''} absolute w-1/2 h-1/4 top-[40%] left-1/4 rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center`}>
                     <h2 className="text-bold text-xl">Score: <span className="text-3xl font-extrabold">{score}</span></h2>
-                    <button ref={btnRef} className="btn btn-primary w-[150px] text-white">Start Game</button>
+                    <button ref={startBtnRef} className="btn btn-primary w-[150px] text-white">Start Game</button>
+                </div>
+
+                <div className={`${!loadingNextLevel ? 'hidden' : ''} absolute w-1/2 h-1/4 top-[40%] left-1/4 rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center`}>
+                    <h2 className="text-bold text-xl">Score: <span className="text-3xl font-extrabold">{score}</span></h2>
+                    <button ref={nextLevelBtnRef} className="btn btn-primary w-[150px] text-white">Start Game</button>
                 </div>
                 <canvas className="bg-white w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md" ref={canvasRef}></canvas>
             </div>
