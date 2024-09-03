@@ -10,6 +10,7 @@ const Canvas = () => {
     const [score, setScore] = useState(0);
     const [lvl, setLvl] = useState(1);
     var level = 1;
+    let gmOvr = true;
     const [gameOver, setGameOver] = useState(true);
     const [loadingNextLevel, setLoadingNextLevel] = useState(false)
 
@@ -117,18 +118,19 @@ const Canvas = () => {
 
 
         function init() {
+            if (level === 1) {
+                setScore(0);
+            }
+
             console.log('init', level)
             player1 = new Player(20, 20, 50, 50);
             enemiesArr = [];
             deadEnemiesArr = [];
             bulletsArr = [];
-            if (level === 1) {
-                setScore(0);
-            }
+
         }
 
         function spawnEnemies() {
-            console.log('spawn', level)
             const playerCenterX = player1.posX + player1.width / 2;
             const playerCenterY = player1.posY + player1.height / 2;
             const angle = Math.atan2(playerCenterY, playerCenterX);
@@ -136,15 +138,16 @@ const Canvas = () => {
                 x: 3 * Math.cos(angle),
                 y: 3 * Math.sin(angle)
             };
-            let i = 0;
+            let i = 1;
             const spawnInterval = setInterval(() => {
+                console.log('i', i, 'level', level, 'fib', fibonacci(level))
                 enemiesArr.push(new Enemy(20, 20, 5, 5, velocity));
-                i++;
-                console.log('check', level)
-                if (i === fibonacci(level)) {
 
+                if (i === fibonacci(level) || gmOvr) {
                     clearInterval(spawnInterval);
                 }
+                i++;
+
             }, 1000);
         }
 
@@ -167,6 +170,7 @@ const Canvas = () => {
                     cancelAnimationFrame(animationId);
 
                     setGameOver(true);
+                    gmOvr = true
                     setLvl(1)
 
                     level = 1
@@ -182,7 +186,6 @@ const Canvas = () => {
 
                         setScore(prevScore => prevScore + 1);
 
-                        console.log('animate', level)
                         if (deadEnemiesArr.length === fibonacci(level)) {
                             // setGameOver(true);
                             setLvl(prevLvl => prevLvl + 1)
@@ -207,6 +210,7 @@ const Canvas = () => {
             setLoadingNextLevel(false)
             init();
             setGameOver(false);
+            gmOvr = false
             cancelAnimationFrame(animationId); // Cancel any previous animation frames
             animate();
             spawnEnemies();
@@ -216,6 +220,7 @@ const Canvas = () => {
             level = 1
             init();
             setGameOver(false);
+            gmOvr = false
             cancelAnimationFrame(animationId); // Cancel any previous animation frames
             animate();
             spawnEnemies();
