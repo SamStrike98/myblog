@@ -147,7 +147,7 @@ const Canvas = () => {
             let i = 1;
             const spawnInterval = setInterval(() => {
                 console.log('i', i, 'level', level, 'fib', fibonacci(level))
-                enemiesArr.push(new Enemy(20, 20, 5, 5, velocity));
+                enemiesArr.push(new Enemy(20, 20, 1 + Math.random() * canvas.width, 5, velocity));
 
                 if (i === fibonacci(level) || gmOvr) {
                     clearInterval(spawnInterval);
