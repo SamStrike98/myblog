@@ -9,7 +9,7 @@ const Contact = () => {
     const myRef = useRef()
     const { isVisible } = useIntersectionObserver(myRef)
     return (
-        <section ref={myRef} className='my-16 min-h-[50vh] w-full'>
+        <section ref={myRef} className='my-16 min-h-[50vh] w-full' id="contact">
 
             <PortfolioSectionTitle text={'Contact'} />
 

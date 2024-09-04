@@ -31,7 +31,7 @@ const navLinks = [
     {
         id: 4,
         title: 'Contact',
-        link: `${process.env.URL}/contact`,
+        link: `${process.env.URL}/#contact`,
         icon: <MdLocalPostOffice />
     },
 ]
@@ -58,7 +58,7 @@ const adminLinks = [
     {
         id: 4,
         title: 'Contact',
-        link: `${process.env.URL}/contact`,
+        link: `${process.env.URL}/#contact`,
         icon: <MdLocalPostOffice />
     },
     {
