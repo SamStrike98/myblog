@@ -11,10 +11,14 @@ const Canvas = () => {
     const [lvl, setLvl] = useState(1);
     var level = 1;
     let gmOvr = true;
+    const [started, setStarted] = useState(false)
     const [gameOver, setGameOver] = useState(true);
     const [loadingNextLevel, setLoadingNextLevel] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+
 
     useEffect(() => {
+        setIsLoading(false)
         const canvas = canvasRef.current;
         const startBtn = startBtnRef.current;
         const nextLevelBtn = nextLevelBtnRef.current;
@@ -22,6 +26,8 @@ const Canvas = () => {
 
         canvas.width = 500;
         canvas.height = 500;
+
+
 
         class Enemy {
             constructor(width, height, posX, posY, velocity) {
@@ -123,7 +129,7 @@ const Canvas = () => {
             }
 
             console.log('init', level)
-            player1 = new Player(20, 20, 50, 50);
+            player1 = new Player(20, 20, canvas.width / 2, canvas.height / 2);
             enemiesArr = [];
             deadEnemiesArr = [];
             bulletsArr = [];
@@ -135,8 +141,8 @@ const Canvas = () => {
             const playerCenterY = player1.posY + player1.height / 2;
             const angle = Math.atan2(playerCenterY, playerCenterX);
             const velocity = {
-                x: 3 * Math.cos(angle),
-                y: 3 * Math.sin(angle)
+                x: level * 3 * Math.cos(angle),
+                y: level * 3 * Math.sin(angle)
             };
             let i = 1;
             const spawnInterval = setInterval(() => {
@@ -148,7 +154,7 @@ const Canvas = () => {
                 }
                 i++;
 
-            }, 1000);
+            }, 1000 * 1 / level);
         }
 
         function animate() {
@@ -198,6 +204,7 @@ const Canvas = () => {
         }
 
         startBtn.addEventListener('click', () => {
+            setStarted(true)
             gameStart();
         });
 
@@ -277,13 +284,23 @@ const Canvas = () => {
     }, []);
 
     return (
-        <>
-            <div className="flex flex-col">
-                <p className="font-bold text-lg text-primary">Level: {lvl}</p>
-                <p className="font-bold text-lg text-primary">Score: {score}</p>
+        <div className="flex flex-col gap-4">
+            <div className="flex flex-row gap-10">
+                <p className="font-bold text-2xl text-primary">Level: {lvl}</p>
+                <p className="font-bold text-2xl text-primary">Score: {score}</p>
             </div>
 
+
+
+
             <div className="relative w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md">
+                <div className={`${started ? 'hidden' : ''} z-10 absolute w-full h-full  rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center p-4`}>
+                    <h2 className="text-4xl font-extrabold">The Fibonacci Horde</h2>
+                    <p className="text-lg">This is a basic horde game where enemies will chase you and you've got to shoot them. The only difference is, every level the number of enemies will increase and will correspond to that level's term in the Fibonacci sequence. Also each level the spawn rate and speed of the enemies will increase!</p>
+                    <p className="text-lg">Controls are WASD to move and use the Mouse to shoot!</p>
+                    {isLoading ? <span className="loading loading-bars loading-lg"></span> : <button onClick={() => setStarted(true)} className="btn btn-primary w-[150px] text-white">Close</button>}
+                </div>
+
                 <div className={`${!gameOver ? 'hidden' : ''} absolute w-1/2 h-1/4 top-[40%] left-1/4 rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center`}>
                     <h2 className="text-bold text-xl">Score: <span className="text-3xl font-extrabold">{score}</span></h2>
                     <button ref={startBtnRef} className="btn btn-primary w-[150px] text-white">Start Game</button>
@@ -291,12 +308,13 @@ const Canvas = () => {
 
                 <div className={`${!loadingNextLevel ? 'hidden' : ''} absolute w-1/2 h-1/4 top-[40%] left-1/4 rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center`}>
                     <h2 className="text-bold text-xl">Current Score: <span className="text-3xl font-extrabold">{score}</span></h2>
-                    <p>Next Up Level {lvl}</p>
+                    <p>Next Level {lvl}</p>
                     <button ref={nextLevelBtnRef} className="btn btn-primary w-[150px] text-white">Next Level</button>
                 </div>
                 <canvas className="bg-white w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md" ref={canvasRef}></canvas>
             </div>
-        </>
+
+        </div>
     );
 }
 
