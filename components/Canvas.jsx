@@ -296,8 +296,8 @@ const Canvas = () => {
             <div className="relative w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md">
                 <div className={`${started ? 'hidden' : ''} z-10 absolute w-full h-full  rounded-md bg-[#0f172a] text-center text-white flex flex-col justify-evenly items-center p-4`}>
                     <h2 className="text-4xl font-extrabold">The Fibonacci Horde</h2>
-                    <p className="text-lg">This is a basic horde game where enemies will chase you and you've got to shoot them. The only difference is, every level the number of enemies will increase and will correspond to that level's term in the Fibonacci sequence. Also each level the spawn rate and speed of the enemies will increase!</p>
-                    <p className="text-lg">Controls are WASD to move and use the Mouse to shoot!</p>
+                    <p className="text-lg">{"This is a basic horde game where enemies will chase you and you've got to shoot them. The only difference is, every level the number of enemies will increase and will correspond to that level's term in the Fibonacci sequence. Also each level the spawn rate and speed of the enemies will increase!"}</p>
+                    <p className="text-lg">{"Controls are WASD to move and use the Mouse to shoot!"}</p>
                     {isLoading ? <span className="loading loading-bars loading-lg"></span> : <button onClick={() => setStarted(true)} className="btn btn-primary w-[150px] text-white">Close</button>}
                 </div>
 
