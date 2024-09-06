@@ -9,7 +9,7 @@ const page = async () => {
     console.log(data)
 
     return (
-        <div className='mb-36 lg:mt-36'>
+        <div className='mb-36 lg:mt-36 min-h-[100vh]'>
             <Container>
                 {data.length > 0 ?
                     <PostsList data={data} />
