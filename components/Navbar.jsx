@@ -5,7 +5,7 @@ import { IoNewspaperOutline } from "react-icons/io5";
 import { MdLocalPostOffice } from "react-icons/md";
 import { TbCategoryFilled } from "react-icons/tb";
 import { LuFileBarChart } from "react-icons/lu";
-import { IoIosCreate } from "react-icons/io";
+import { IoIosCreate, IoLogoGameControllerB } from "react-icons/io";
 import { auth, signOut } from '@/auth';
 
 
@@ -18,9 +18,9 @@ const navLinks = [
     },
     {
         id: 2,
-        title: 'Categories',
-        link: `${process.env.URL}/posts/categories`,
-        icon: <TbCategoryFilled />
+        title: 'Games',
+        link: `${process.env.URL}/games`,
+        icon: <IoLogoGameControllerB />
     },
     {
         id: 3,
@@ -45,9 +45,9 @@ const adminLinks = [
     },
     {
         id: 2,
-        title: 'Categories',
-        link: `${process.env.URL}/posts/categories`,
-        icon: <TbCategoryFilled />
+        title: 'Games',
+        link: `${process.env.URL}/games`,
+        icon: <IoLogoGameControllerB />
     },
     {
         id: 3,
