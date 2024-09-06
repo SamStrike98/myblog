@@ -185,7 +185,7 @@ const Canvas = () => {
                 bulletsArr.forEach((bullet, bulletIdx) => {
                     const dist = Math.hypot(bullet.posX - enemy.posX, bullet.posY - enemy.posY);
 
-                    if (dist - enemy.width / 2 - bullet.radius <= 0) {
+                    if (dist - enemy.width / 2 - bullet.radius <= 0.2) {
                         enemiesArr.splice(enemyIdx, 1);
                         deadEnemiesArr.push(enemy);
                         bulletsArr.splice(bulletIdx, 1);
