@@ -42,9 +42,9 @@ const page = () => {
 
                 <Tech />
 
-                <section className='border-primary border-4 rounded-md'>
+                {/* <section className='border-primary border-4 rounded-md'>
                     <Canvas />
-                </section>
+                </section> */}
 
             </Container>
 
