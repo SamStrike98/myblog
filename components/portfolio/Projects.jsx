@@ -11,10 +11,7 @@ import { RiWordpressFill } from "react-icons/ri";
 
 import PortfolioSectionTitle from "../PortfolioSectionTitle";
 import DesktopProject from "../DesktopProject";
-import Svg from "../Svg";
-import football from '@/public/football.svg'
-import car from '@/public/car.svg'
-import Image from "next/image";
+
 
 const projectsArr = [
     {

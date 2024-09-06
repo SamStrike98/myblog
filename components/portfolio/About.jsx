@@ -7,7 +7,7 @@ import Svg from "../Svg"
 import useIntersectionObserver from "@/hooks/useIntersectionObserver"
 import { useRef } from "react"
 
-import football from '@/public/football.svg'
+
 import planet from '@/public/planet.svg'
 
 const About = () => {
