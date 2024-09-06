@@ -86,7 +86,7 @@ const ContactForm = () => {
                 :
                 success ? <button className="btn btn-success w-[200px] self-center">Sent</button>
                     :
-                    <button onClick={handleSubmit} className="btn btn-primary w-[200px] self-center" type="submit">Submit</button>
+                    <button onClick={handleSubmit} className="btn btn-primary text-white w-[200px] self-center" type="submit">Submit</button>
             }
 
             {error !== '' ?
