@@ -88,7 +88,8 @@ const Game = () => {
                 image,
                 frames = { max: 1, hold: 10 },
                 sprites = [],
-                animate = false
+                animate = false,
+                name
             }) {
                 this.position = position;
                 this.image = image
@@ -101,6 +102,8 @@ const Game = () => {
                 this.animate = animate
                 this.sprites = sprites
                 this.opacity = 1
+                this.health = 100
+                this.name = name
             }
             draw() {
                 c.save()
@@ -244,7 +247,6 @@ const Game = () => {
                         }
                     })) {
                         moving = false;
-
                         break;
                     }
                 }
