@@ -119,6 +119,71 @@ const projectsArr = [
         repoLink: 'https://github.com/SamStrike98/Trainer-Experts',
         liveSiteLink: ''
     },
+    {
+        id: 5,
+        name: 'Races Near Me',
+        img: '/races_near_me.png',
+        info: 'The idea behind this project is something I would personally use: a combination of a comparison website and a database for UK-based fun runs. It allows users to search for races and apply a range of filters to find the perfect event. I used NextJS for both the front end and back end, TailwindCSS and DaisyUI for styling, and MongoDB for the database. I also integrated a few external APIs, including the Stripe API for payments and OpenStreetMaps for converting postcodes to latitude and longitude.',
+        tech: [
+            {
+                id: 1,
+                name: 'Next JS',
+                icon: <RiNextjsFill size={50} />
+            },
+            {
+                id: 2,
+                name: 'Tailwind CSS',
+                icon: <RiTailwindCssFill size={50} />
+            },
+            {
+                id: 3,
+                name: 'Stripe',
+                icon: <FaCcStripe size={50} />
+            },
+            {
+                id: 4,
+                name: 'Auth JS',
+                icon: <FaKey size={50} />
+            },
+            {
+                id: 5,
+                name: 'MongoDB',
+                icon: <SiMongodb size={50} />
+            },
+        ],
+        repoLink: 'https://github.com/SamStrike98/races-near-me',
+        liveSiteLink: ''
+    },
+    {
+        id: 6,
+        name: 'Portfolio and Blog',
+        img: '/portfolio.png',
+        info: 'There have been many iterations of my portfolio but for this one I decided to add blog post functionality to give me a place to ramble. As with a number of my other projects I leveraged NextJS for the frontend and backend, TailwindCSS and DaisyUI for styling, MongoDB to store blog posts and finally AuthJS for authentication and auhtorisation.',
+        tech: [
+            {
+                id: 1,
+                name: 'Next JS',
+                icon: <RiNextjsFill size={50} />
+            },
+            {
+                id: 2,
+                name: 'Tailwind CSS',
+                icon: <RiTailwindCssFill size={50} />
+            },
+            {
+                id: 3,
+                name: 'Auth JS',
+                icon: <FaKey size={50} />
+            },
+            {
+                id: 4,
+                name: 'MongoDB',
+                icon: <SiMongodb size={50} />
+            },
+        ],
+        repoLink: 'https://github.com/SamStrike98/myblog',
+        liveSiteLink: 'https://samstrike.com'
+    },
 ]
 
 const Projects = () => {
