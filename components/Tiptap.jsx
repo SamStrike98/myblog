@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Highlight from '@tiptap/extension-highlight'
@@ -8,6 +8,9 @@ import TextAlign from '@tiptap/extension-text-align'
 import Paragraph from '@tiptap/extension-paragraph'
 import Heading from '@tiptap/extension-heading'
 import CodeBlock from '@tiptap/extension-code-block'
+import FileHandler from '@tiptap-pro/extension-file-handler'
+import Image from '@tiptap/extension-image'
+import CustomImage from './CustomImage'
 
 import PrismLoader from './PrismLoader'
 import { useRouter } from 'next/navigation'
@@ -57,6 +60,7 @@ const MenuBar = ({ editor }) => {
                 <button onClick={() => editor.chain().focus().setTextAlign('justify').run()} className={`btn ${editor.isActive({ textAlign: 'justify' }) ? 'btn-primary' : 'btn-neutral'}`}>
                     Justify
                 </button>
+
                 {/* <button
                     onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                     className={editor.isActive('codeBlock') ? 'is-active' : ''}
@@ -90,6 +94,10 @@ const Tiptap = ({ updateContent, prevContent }) => {
         setSaved(true)
     }
 
+    const addAlt = () => {
+
+    }
+
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -112,7 +120,53 @@ const Tiptap = ({ updateContent, prevContent }) => {
                 HTMLAttributes: {
                     class: 'bg-[#272822] text-white p-2 rounded-md',
                 },
-            })
+            }),
+            CustomImage,
+            // Image.configure({
+            //     HTMLAttributes: {
+            //         onClick: addAlt()
+            //     },
+            // }),
+            FileHandler.configure({
+                allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+                onDrop: (currentEditor, files, pos) => {
+                    files.forEach(file => {
+                        const fileReader = new FileReader()
+
+                        fileReader.readAsDataURL(file)
+                        fileReader.onload = () => {
+                            currentEditor.chain().insertContentAt(pos, {
+                                type: 'image',
+                                attrs: {
+                                    src: fileReader.result,
+                                },
+                            }).focus().run()
+                        }
+                    })
+                },
+                onPaste: (currentEditor, files, htmlContent) => {
+                    files.forEach(file => {
+                        if (htmlContent) {
+                            // if there is htmlContent, stop manual insertion & let other extensions handle insertion via inputRule
+                            // you could extract the pasted file from this url string and upload it to a server for example
+                            console.log(htmlContent) // eslint-disable-line no-console
+                            return false
+                        }
+
+                        const fileReader = new FileReader()
+
+                        fileReader.readAsDataURL(file)
+                        fileReader.onload = () => {
+                            currentEditor.chain().insertContentAt(currentEditor.state.selection.anchor, {
+                                type: 'image',
+                                attrs: {
+                                    src: fileReader.result,
+                                },
+                            }).focus().run()
+                        }
+                    })
+                },
+            }),
         ],
         content: prevContent,
         editorProps: {
@@ -133,6 +187,14 @@ const Tiptap = ({ updateContent, prevContent }) => {
         },
 
     })
+
+    const addImage = useCallback(() => {
+        const url = window.prompt('URL')
+
+        if (url) {
+            editor.chain().focus().setImage({ src: url }).run()
+        }
+    }, [editor])
 
     if (!editor) {
         return null;
@@ -176,7 +238,7 @@ const Tiptap = ({ updateContent, prevContent }) => {
             }
 
             <EditorContent editor={editor} className='' />
-
+            <button onClick={addImage}>Add Image</button>
 
 
 

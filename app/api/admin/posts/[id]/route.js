@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { updatePost } from "@/queries/posts";
 import dbConnect from "@/lib/mongo";
 import { auth } from "@/auth";
+import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 
 
 // Update Post 
@@ -17,6 +18,14 @@ export const PATCH = auth(async function PATCH(request, { params }) {
             await dbConnect();
             console.log("Database connected");
 
+
+            // Use Promise.all to wait for all async image uploads to complete
+            await Promise.all(content.content.map(async (item) => {
+                if (item.type === 'image') {
+                    const imgUrl = await uploadToCloudinary(item.attrs.src, item.attrs.alt);
+                    item.attrs.src = imgUrl; // update the src after upload
+                }
+            }));
 
             // Update the DB
             await updatePost(id, { title, content, category, draft });

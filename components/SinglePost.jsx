@@ -3,8 +3,10 @@
 import Badge from "./Badge"
 import ContentsMenu from "./ContentsMenu"
 import PrismLoader from "./PrismLoader"
+import Image from "next/image"
 
 const SinglePost = ({ title, content, createdAt, category }) => {
+
 
     return (
         <div className="flex flex-row py-10 justify-evenly">
@@ -16,7 +18,7 @@ const SinglePost = ({ title, content, createdAt, category }) => {
 
                     <div className='mt-5'>
                         {content !== '' && content.content.map((item, index) => {
-                            if (item.content === undefined) {
+                            if (item.content === undefined && item.type !== "image") {
                                 return (<p key={index} className='my-5'></p>)
                             } else {
                                 if (item.type === "heading") {
@@ -25,8 +27,13 @@ const SinglePost = ({ title, content, createdAt, category }) => {
                                 }
                                 else if (item.type === "paragraph") {
                                     return (item.content ? <p key={index} className={`text-wrap ${item.attrs.textAlign === ' left' ? 'text-left' : ''} ${item.attrs.textAlign === 'center' ? 'text-center' : ''} ${item.attrs.textAlign === 'right' ? 'text-right' : ''} ${item.attrs.textAlign === 'justify' ? 'text-justify' : ''}`} > {item.content.map((subItem, index) => (<span key={index} className={`text-md ${subItem.marks?.find(e => e.type === 'bold') != undefined ? 'font-bold' : ''} ${subItem.marks?.find(e => e.type === 'italic') != undefined ? 'italic' : ''} ${subItem.marks?.find(e => e.type === 'strike') != undefined ? 'line-through' : ''} ${subItem.marks?.find(e => e.type === 'highlight') != undefined ? 'bg-yellow-300' : ''}`}>{subItem.text}</span>))}</p> : '')
-                                } else {
+                                }
+
+                                else if (item.type === "codeBlock") {
                                     return (item.content ? <PrismLoader key={index} language={item.attrs.language} content={item?.content[0].text} /> : '')
+                                } else {
+                                    {/* return (item.src ? <Image src={item.attrs.src} /> : <p>Image</p>) */ }
+                                    return (<Image key={index} src={item.attrs.src} alt={item.attrs.alt} width={500} height={500} />)
                                 }
                             }
                         })}

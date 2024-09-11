@@ -3,6 +3,7 @@ import { createPost, getAllPublishedPosts } from "@/queries/posts";
 import dbConnect from "@/lib/mongo";
 import mongoose from "mongoose";
 import { auth } from "@/auth";
+import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 
 
 export const POST = auth(async function (request) {
@@ -13,6 +14,14 @@ export const POST = auth(async function (request) {
             // Create a DB Connection
             await dbConnect();
             console.log("Database connected");
+
+            // Use Promise.all to wait for all async image uploads to complete
+            await Promise.all(content.content.map(async (item) => {
+                if (item.type === 'image') {
+                    const imgUrl = await uploadToCloudinary(item.attrs.src, item.attrs.alt);
+                    item.attrs.src = imgUrl; // update the src after upload
+                }
+            }));
 
             const createdAt = new Date();
 
