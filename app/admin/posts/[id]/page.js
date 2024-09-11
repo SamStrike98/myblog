@@ -2,6 +2,7 @@ import Container from '@/components/Container';
 import SinglePost from '@/components/SinglePost';
 import Link from 'next/link';
 import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
 const page = async ({ params }) => {
     const session = await auth();
