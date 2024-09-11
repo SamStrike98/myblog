@@ -8,7 +8,6 @@ const colours = {
 }
 
 const Badge = ({ text }) => {
-    console.log(text)
     return (
         <div className={`badge ${colours[text]}`}>{text}</div>
     )
