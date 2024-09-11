@@ -440,7 +440,8 @@ const Game = () => {
 
         }
 
-        animateBattle()
+        // animateBattle()
+        animate()
 
     }, []);
 
