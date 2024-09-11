@@ -12,7 +12,7 @@ export const GET = async (request, { params }) => {
         const postId = params.id
 
         const post = await getPostById(postId);
-        console.log("Fetched item:", post);
+        console.log("Fetched item:", post.content.content);
 
         return new NextResponse(JSON.stringify(post), {
             status: 200,
