@@ -9,7 +9,7 @@ const SinglePost = ({ title, content, createdAt, category }) => {
     return (
         <div className="flex flex-row py-10 justify-evenly">
             <div className=" hidden md:flex "><ContentsMenu contents={content.content} /></div>
-            <div className='bg-[#f2f2f2] text-black min-h-[250px] p-3 rounded-md max-w-[900px] w-[95%] md:w-[70%] shadow-lg'>
+            <div className='bg-[#f2f2f2] text-black min-h-[250px] p-6 rounded-md max-w-[900px] w-[95%] md:w-[70%] shadow-lg'>
                 <h2 className='font-extrabold text-3xl text-center'>{title}</h2>
                 <Badge text={category} />
                 <div className="flex flex-row">
