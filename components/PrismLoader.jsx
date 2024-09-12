@@ -8,7 +8,8 @@ import PrismJsx from 'prismjs/components/prism-jsx.min';
 const languageObj = {
     'html': 'language-markup',
     'javascript': 'language-javascript',
-    'jsx': 'language-jsx'
+    'jsx': 'language-jsx',
+    'latex': 'language-latex'
 }
 
 export default function PrismLoader({ content, language }) {

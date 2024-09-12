@@ -10,10 +10,13 @@ import Heading from '@tiptap/extension-heading'
 import CodeBlock from '@tiptap/extension-code-block'
 import FileHandler from '@tiptap-pro/extension-file-handler'
 import Image from '@tiptap/extension-image'
+import { Mathematics } from '@tiptap-pro/extension-mathematics'
 import CustomImage from './CustomImage'
 
 import PrismLoader from './PrismLoader'
 import { useRouter } from 'next/navigation'
+
+import 'katex/dist/katex.min.css'
 
 const MenuBar = ({ editor }) => {
 
@@ -101,6 +104,11 @@ const Tiptap = ({ updateContent, prevContent }) => {
     const editor = useEditor({
         extensions: [
             StarterKit,
+            Mathematics.configure({
+                HTMLAttributes: {
+                    class: 'bg-[#272822] text-white p-2 rounded-md',
+                },
+            }), ,
             TextAlign.configure({
                 types: ['heading', 'paragraph']
             }),
