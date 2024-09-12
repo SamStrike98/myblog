@@ -19,7 +19,7 @@ function ImageNode(props) {
         <NodeViewWrapper className={className} data-drag-handle>
             <img src={src} alt={alt} />
             <span className="alt-text-indicator">
-                <div>Alt: {alt ? alt : "No alt"}
+                <div className='flex flex-row gap-4 font-bold'><p>Alt: {alt ? alt : "No alt"}</p>
                     <button className="edit" type="button" onClick={onEditAlt}>
                         Edit
                     </button>
