@@ -60,6 +60,7 @@ const CreatePostForm = () => {
                     <option value={'Maths'}>Maths</option>
                     <option value={'Web Development'}>Web Development</option>
                     <option value={'Physics'}>Physics</option>
+                    <option value={'Game Development'}>Game Development</option>
                 </select>
             </label>
 

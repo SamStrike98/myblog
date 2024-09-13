@@ -9,7 +9,8 @@ const colours = {
     'Web Development': 'from-blue-800 to-blue-400',
     'Physics': 'from-purple-800 to-purple-400',
     'Maths': 'from-red-800 to-red-400',
-    'Other': 'from-orange-800 to-orange-400'
+    'Other': 'from-orange-800 to-orange-400',
+    'Game Development': 'from-green-800 to-green-400'
 }
 
 const PostCard = ({ id, title, createdAt, category, draft }) => {
