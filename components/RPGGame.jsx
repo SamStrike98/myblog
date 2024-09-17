@@ -35,7 +35,7 @@ const Game = () => {
                 this.height = 48
             }
             draw() {
-                c.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                c.fillStyle = 'rgba(255, 0, 0, 0)';
                 c.fillRect(this.position.x, this.position.y, this.width, this.height);
             }
         }
@@ -190,9 +190,9 @@ const Game = () => {
                 boundary.draw()
             })
 
-            battleZonesArr.forEach(battleZone => {
-                battleZone.draw()
-            })
+            // battleZonesArr.forEach(battleZone => {
+            //     battleZone.draw()
+            // })
 
             player.draw()
 
@@ -430,15 +430,15 @@ const Game = () => {
             animate: true
         })
 
-        function animateBattle() {
-            requestAnimationFrame(animateBattle)
-            // console.log('animating battle')
-            battleBackground.draw()
+        // function animateBattle() {
+        //     requestAnimationFrame(animateBattle)
+        //     // console.log('animating battle')
+        //     battleBackground.draw()
 
-            draggle.draw()
-            emby.draw()
+        //     draggle.draw()
+        //     emby.draw()
 
-        }
+        // }
 
         // animateBattle()
         animate()
@@ -447,24 +447,24 @@ const Game = () => {
 
     return (
         <div className="flex flex-col gap-4 relative">
-            <div className="bg-black w-[500px] h-[500px] absolute rounded-md pointer-events-none opacity-0"></div>
+            {/* <div className="bg-black w-[500px] h-[500px] absolute rounded-md pointer-events-none opacity-0"></div>
             <div className="absolute bg-white w-[300px] h-[80px] top-[10px] left-[20px] border-2 border-black flex flex-col justify-evenly">
                 <h2 className="text-2xl font-extrabold text-black ml-5">Draggle</h2>
                 <div className="relative ml-5">
                     <div className="w-[80%] h-[5px] bg-gray-400"></div>
                     <div className="w-[50%] h-[5px] bg-green-400 absolute top-0"></div>
                 </div>
-            </div>
-
+            </div> */}
+            {/* 
             <div className="absolute bg-white w-[300px] h-[80px] bottom-[60px] right-[20px] border-2 border-black flex flex-col justify-evenly">
                 <h2 className="text-2xl font-extrabold text-black ml-5">Emby</h2>
                 <div className="relative ml-5">
                     <div className="w-[80%] h-[5px] bg-gray-400"></div>
                     <div className="w-[50%] h-[5px] bg-green-400 absolute top-0"></div>
                 </div>
-            </div>
+            </div> */}
             <canvas className="bg-white w-[90vw] h-[90vw] sm:w-[500px] sm:h-[500px] rounded-md" ref={gameRef}></canvas>
-            <div className="bg-white h-[50px] w-full absolute bottom-0 border-t-2 border-black flex flex-row">
+            {/* <div className="bg-white h-[50px] w-full absolute bottom-0 border-t-2 border-black flex flex-row">
                 <div className=" w-3/4 h-full flex flex-row justify-evenly text-black">
                     <button onClick={() => {
                         emby.attack({
@@ -485,7 +485,7 @@ const Game = () => {
                 <div className=" w-1/4 h-full flex flex-row justify-center items-center text-black font-extrabold">
                     <h1>Attack Type</h1>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
