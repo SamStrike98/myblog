@@ -8,7 +8,7 @@ const Experience = () => {
     const myRef = useRef()
     const { isVisible } = useIntersectionObserver(myRef)
     return (
-        <section ref={myRef} className='my-16 min-h-[50vh]'>
+        <section ref={myRef} className='my-16 min-h-[25vh]'>
             <PortfolioSectionTitle text={'Experience'} />
             <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
                 <li>

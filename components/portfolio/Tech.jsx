@@ -80,7 +80,7 @@ const Tech = () => {
     const myRef = useRef()
     const { isVisible } = useIntersectionObserver(myRef)
     return (
-        <section ref={myRef} className={` my-16 min-h-[50vh]`}>
+        <section ref={myRef} className={` my-16 min-h-[25vh]`}>
             <PortfolioSectionTitle text={'Tech'} />
 
             <div className={`${isVisible ? 'fadeInUp-animation' : 'opacity-0'} bg-white p-10 rounded-md mx-4`}>
