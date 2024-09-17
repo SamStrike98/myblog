@@ -14,7 +14,7 @@ const About = () => {
     const myRef = useRef()
     const { isVisible } = useIntersectionObserver(myRef)
     return (
-        <section ref={myRef} className='my-16 min-h-[50vh]'>
+        <section ref={myRef} className='my-16 min-h-[25vh]'>
             <PortfolioSectionTitle text={'About'} />
             <div className='flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-10'>
 
@@ -25,7 +25,7 @@ const About = () => {
                 </div>
                 {/* <Svg img={planet} name={'planet'} /> */}
                 <div className={`w-[90%] sm:w-[50%] relative ${isVisible ? 'border-primary' : 'border-transparent'} transition-colors border-2 rounded-md`}>
-                    <div className={`${isVisible ? 'rotate-45 md:scale-150 animate-pulse' : '-rotate-45 scale-0'} absolute delay-1000 duration-500 right-[-75px] top-[-75px]`}>
+                    <div className={`${isVisible ? 'rotate-45 md:scale-150' : '-rotate-45 scale-0'} absolute delay-1000 duration-500 right-[-75px] top-[-75px]`}>
                         <Image src={planet} width={150} height={150} alt={'planet'} className="" />
                     </div>
                     <p className={`${isVisible ? 'fadeInDown-animation' : 'opacity-0'} font-bold rounded-md lg:text-2xl text-xl leading-relaxed p-5 text-center`}>{"My journey into building websites started during lockdown with the aim of challenging myself to learn something new. Having thoroughly enjoyed learning frontend website development in my spare time, I'm now looking to turn it into a career."}</p>
