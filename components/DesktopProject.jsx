@@ -26,8 +26,8 @@ const DesktopProject = ({ name, img, info, tech, repoLink, liveSiteLink }) => {
                         :
                         <div>
                             <ul className="flex flex-row justify-evenly px-2 pt-4">
-                                {tech.map(item => (
-                                    <TechBadge key={item.id} icon={item.icon} name={item.name} />
+                                {tech.map((item, index) => (
+                                    <TechBadge key={index} name={item} />
                                 ))}
                             </ul>
 
