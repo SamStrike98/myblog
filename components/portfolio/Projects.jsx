@@ -63,10 +63,19 @@ const projectsArr = [
         id: 6,
         name: 'Portfolio and Blog',
         img: '/portfolio.png',
-        info: 'There have been many iterations of my portfolio but for this one I decided to add blog post functionality to give me a place to ramble. As with a number of my other projects I leveraged NextJS for the frontend and backend, TailwindCSS and DaisyUI for styling, MongoDB to store blog posts and finally AuthJS for authentication and auhtorisation.',
+        info: 'There have been many iterations of my portfolio, but for this one, I decided to add blog post functionality to give me a place to ramble. As with several of my other projects, I utilised NextJS for both the frontend and backend, TailwindCSS and DaisyUI for styling, MongoDB to store blog posts, and finally, AuthJS for authentication and authorisation.',
         tech: ['Next JS', 'Tailwind CSS', 'Auth JS', 'MongoDB'],
         repoLink: 'https://github.com/SamStrike98/myblog',
         liveSiteLink: 'https://samstrike.com'
+    },
+    {
+        id: 7,
+        name: 'Apex Motors',
+        img: '/apex_motors.png',
+        info: 'I built this project using WordPress, utilising the popular Advanced Custom Fields plugin to extend its functionality, and created a custom theme using Tailwind CSS for styling.',
+        tech: ['WordPress', 'Tailwind CSS', 'PHP', 'JavaScript'],
+        repoLink: 'https://github.com/SamStrike98/tailwind-custom-theme',
+        liveSiteLink: ''
     },
 ]
 
