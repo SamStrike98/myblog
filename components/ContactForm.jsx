@@ -46,7 +46,7 @@ const ContactForm = () => {
 
             // router.push(`/admin`)
         } else {
-            alert('Error, message not send.')
+            alert('Error, message not sent.')
             setIsLoading(false)
         }
     }

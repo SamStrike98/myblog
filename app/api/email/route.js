@@ -5,12 +5,21 @@ import nodemailer from 'nodemailer';
 export async function POST(request) {
     const { email, name, message } = await request.json();
 
+    // const transport = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //         user: process.env.EMAIL,
+    //         pass: process.env.EMAIL_PASSWORD,
+    //     },
+    // });
     const transport = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false, // use false for STARTTLS; true for SSL on port 465
         auth: {
             user: process.env.EMAIL,
             pass: process.env.EMAIL_PASSWORD,
-        },
+        }
     });
 
     const mailOptions = {
@@ -36,6 +45,7 @@ export async function POST(request) {
         await sendMailPromise();
         return NextResponse.json({ message: 'Email sent' }, { status: 201 });
     } catch (err) {
+        console.log(err)
         return NextResponse.json({ error: err }, { status: 500 });
     }
 }
